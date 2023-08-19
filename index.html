@@ -1,208 +1,71 @@
-<html>
+<!-- Author: Tushar
+B.Tech CSE (12001179, 4CE6)
+Punjabi University Patiala
+Date: 19/08/2023 -->
 
-<head>
-	<title>SGPA Calculator</title>
+<!doctype html>
+	<head>
+		<title>SGPA Calculator</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script type="text/javascript" src="index.js"></script>
+	</head>
 
-	<style>
-		body {margin: 20px;}
+	<body onload="load_defaults()">
 
-		table {
-			text-align: center;
-			border: 4px double #0060a4;
-			border-collapse: collapse;
-			font-family: 'Courier New';
-		}
+		<h2><u>SGPA Calculator - (UCoE Punjabi University Patiala)</u></h2>
+		<br>
 
-		td,th {
-			border-color: #06bbdb;
-			border-left: 2px solid #0060a4;
-			border-right: 2px solid #0060a4;
-		}
+		<table id="SGPA_TABLE" border="2">
+			<tr>
+				<th>Semester</th> <th>CGPA</th> <th>Credits</th>
+				<th>Grade Points Secured</th>
+			</tr>
 
-		th {
-			padding-left: 5px;
-			padding-right: 5px;
-			border-bottom: 2px solid #0060a4;
-		}
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
+			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
 
-		input {
-			border: none;
-			width: 100%;
-			text-align: center;
-		}
+			<tr class="total">
+				<td>Total</td> <td></td> <td></td> <td></td>
+			</tr>
 
-		.button {
-			background-color:  #06bbdb;
-			color: white;
-			border: 4px inset #0086e6;
-		}
+			<tr class="result">
+				<td><input type="button" class="button" value="Reset All" onclick="location.reload(true)"></td>
+				<td><input type="button" class="button" value="Default Credits" onclick="load_defaults()"></td>
+				<td><input type="button" class="button" value="Calculate SGPA" onclick="calculate()"></td>
+				<td>SGPA = </td>
+			</tr>
 
-		.total {
-			font-weight: bold;
-		}
+		</table>
 
-		.result {
-			font-weight: bold;
-			border: 2px solid #0060a4;
-		}
+		<br>
+		<p id="message" class="message"></p>
 
-		.message, .info { font-style: italic; }
-
-		.info {font-size: 15px;}
-
-	</style>
-
-	<script type="text/javascript">
-		function load_default_credits() {
-			let sem_credits = [, 21.5, 22.5, 24, 25, 31, 25];
-			let table = document.getElementById("SGPA_TABLE");
-			
-			for(let i=1; i<sem_credits.length; i++) {
-				table.rows[i].cells[2].querySelector("input").value = sem_credits[i];
-			}
-		}
-
-		function isNumber(string) {
-			return !isNaN(+string);
-		}
+		<p class="info">
+			CGPA : Current Grade Point Average<br>
+			SGPA : Semester Grade Point Average<br>
+			<br>
+			Grade Points Secured (GPS) = CGPA × Credits<br>
+			SGPA = (GPS1 + GPS2 + .. + GPS8) / (C1 + C2 + .. + C8)<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Total Grade Points Secured / Total credits<br>
+			<br>
+			Note : Default credits are of CSE Batch 2024. You can change accordingly.<br>
+		</p>
 		
-		function is_valid_data() {
-			let table = document.getElementById("SGPA_TABLE");
-			let is_valid = true, error = "";
-			let message = document.getElementById("message");
-			
-			for(let i=1; i<=8; i++) {
-				let cgpa = table.rows[i].cells[1].querySelector("input");
-				let credits = table.rows[i].cells[2].querySelector("input");
-				
-				cgpa.style.color = credits.style.color = "black";
-				
-				// Checking if data provided in range or not.
-				if(cgpa.value<0 || cgpa.value>10 || !isNumber(cgpa.value)) {
-					cgpa.style.color = "red";
-					error += `Error: Invalid CGPA '${cgpa.value}' (CGPA lies between 0 to 10)<br>`;
-					is_valid = false;
-				}
-
-				if(credits.value<0 || credits.value>50 || !isNumber(credits.value)) {
-					credits.style.color = "red";
-					error += `Error: Invalid Credits '${credits.value}'<br>`;
-					is_valid = false;
-				}
-			}
-			
-			if(!is_valid) {
-				message.style.color = "red";
-				message.innerHTML = error;
-			}
-			else {
-				message.style.color = "black";
-				message.innerHTML = "";
-			}
-			return is_valid;
-		}
-			
-		function calculate() {
-			// Checking data valid or not.
-			if(!is_valid_data())
-				return;
-			
-			let table = document.getElementById("SGPA_TABLE");
-			let total_credits=0, total_grade_points=0;
-
-			for(let i=1; i<=8; i++) {
-				let cgpa = table.rows[i].cells[1].querySelector("input").value;
-				let credits = table.rows[i].cells[2].querySelector("input").value;
-				
-				if(cgpa == '' || credits == '') {
-					table.rows[i].cells[1].querySelector("input").value = '';
-					table.rows[i].cells[2].querySelector("input").value = '';
-					continue;
-				}
-
-				table.rows[i].cells[3].innerHTML = parseFloat((cgpa*credits).toFixed(2));
-				total_credits+=(credits*1);
-				total_grade_points+=(cgpa*credits);
-			}
-			
-			table.rows[9].cells[2].innerHTML = parseFloat(total_credits.toFixed(2));
-			table.rows[9].cells[3].innerHTML = parseFloat(total_grade_points.toFixed(2));
-			table.rows[10].cells[3].innerHTML = "SGPA = "+(total_grade_points/total_credits).toFixed(2);
-		}
-
-	</script>
-
-</head>
-
-<body onload="load_default_credits()">
-
-	<h2><u>SGPA Calculator - (UCoE Punjabi University Patiala)</u></h2>
-	<br>
-
-	<table id="SGPA_TABLE" border="2">
-		<tr>
-			<th>Semester</th> <th>CGPA</th> <th>Credits</th>
-			<th>Grade Points Secured</th>
-		</tr>
-
-		<tr>
-			<td>1</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>2</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>3</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>4</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>5</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>6</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>7</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr>
-			<td>8</td> <td><input></td> <td><input></td> <td></td>
-		</tr>
-
-		<tr class="total">
-			<td>Total</td> <td></td> <td></td> <td></td>
-		</tr>
-
-		<tr class="result">
-			<td><input type="button" class="button" value="Reset All" onclick="location.reload(true)"></td>
-			<td><input type="button" class="button" value="Default Credits" onclick="load_default_credits()"></td>
-			<td><input type="button" class="button" value="Calculate SGPA" onclick="calculate()"></td>
-			<td>SGPA = </td>
-		</tr>
-
-	</table>
-
-	<br>
-	<p id="message" class="message"></p>
-
-	<pre class="info">
-  CGPA : Current Grade Point Average
-  SGPA : Semester Grade Point Average
-  Grade Points Secured (GPS) = CGPA×Credits
-  SGPA = (GPS1 + GPS2 + .. + GPS8) / (C1 + C2 + .. + C8)
-       = Total Grade Points Secured / Total credits
-  
-  Note : Default credits are of CSE Batch 2023. You can change accordingly.
-	</pre>
-	
-</body>
+		<br><br><br><br><br><br><br><br><br>
+		
+		<div class="wrapper">
+			<div class="about">
+				<p>Developed by - Tushar<br>B.Tech CSE (12001179, 4CE6)<br>Punjabi University Patiala</p>
+			</div>
+		</div>
+	</body>
 
 </html>
