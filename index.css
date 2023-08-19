@@ -1,0 +1,102 @@
+/* Author: Tushar
+B.Tech CSE (12001179, 4CE6)
+Punjabi University Patiala
+Date: 19/08/2023 */
+
+:root {
+	--bgcolor: #ebe7ff;
+	
+	--table-bgcolor: white;
+
+	--th-bgcolor: #7d6df6;
+	--th-text-color: white;
+
+	--border-color: #0060a4;
+
+	--button-color: #06bbdb;
+	--button-border-color: #0086e6;
+	--button-text-color: white;
+}
+
+body {
+	background-color: var(--bgcolor);
+	margin: 20px;
+}
+
+table {
+	text-align: center;
+	background-color: var(--table-bgcolor);
+	border: 4px double var(--border-color);
+	border-collapse: collapse;
+	margin-right: 10px;
+	font-family: 'Courier New';
+}
+
+td, th {
+	border-color: var(--button-color);
+	border-left: 2px solid var(--border-color);
+	border-right: 2px solid var(--border-color);
+}
+
+th {
+	background-color: var(--th-bgcolor);
+	color: var(--th-text-color);
+	padding-left: 5px;
+	padding-right: 5px;
+	border-bottom: 2px solid var(--border-color);
+}
+
+input {
+	border: none;
+	width: 97%;
+	text-align: center;
+}
+
+.button {
+	background-color: var(--button-color);
+	color: var(--button-text-color);
+	border: 4px inset var(--button-border-color);
+	width: 100%;
+}
+
+.total, .result {
+	font-weight: bold;
+}
+
+.result {
+	border: 2px solid var(--border-color);
+}
+
+.message, .info, .about {
+	font-style: italic;
+	font-size: medium;
+}
+
+.message {
+	margin: 10px;
+}
+
+.info {
+	margin: 15px;
+}
+
+.wrapper {
+	position: relative;
+ }
+
+.about {
+	text-align: right;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+
+@media (max-aspect-ratio: 1) {
+	table, .message, .info, .about {
+		font-size: small;
+	}
+
+	input, th, td, .about {
+		font-size: 10px;
+	}
+}
