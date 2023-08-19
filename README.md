@@ -1,1 +1,1 @@
-# sgpa_calculator.github.io
+# sgpa calculator
