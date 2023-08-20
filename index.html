@@ -1,11 +1,11 @@
 <!-- Author: Tushar
 B.Tech CSE (12001179, 4CE6)
 Punjabi University Patiala
-Date: 19/08/2023 -->
+Date: 20/08/2023 -->
 
-<!doctype html>
+<!DOCTYPE html>
 	<head>
-		<title>SGPA Calculator</title>
+		<title>CGPA Calculator</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="index.css">
@@ -14,52 +14,49 @@ Date: 19/08/2023 -->
 
 	<body onload="load_defaults()">
 
-		<h2><u>SGPA Calculator - (UCoE Punjabi University Patiala)</u></h2>
+		<h2><u>CGPA Calculator</u> - <u>Measure Your Acadmic Performance</u> 📈</h2>
 		<br>
 
-		<table id="SGPA_TABLE" border="2">
-			<tr>
-				<th>Semester</th> <th>CGPA</th> <th>Credits</th>
-				<th>Grade Points Secured</th>
-			</tr>
-
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-			<tr> <td></td> <td><input></td> <td><input></td> <td></td> </tr>
-
+		<table id="CGPA_TABLE" border="2">
+			<tr> <th></th> <th></th> <th></th> <th></th> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			<tr> <td></td> <td></td> <td></td> <td></td> </tr>
+			
 			<tr class="total">
-				<td>Total</td> <td></td> <td></td> <td></td>
+				<td></td> <td></td> <td></td> <td></td>
 			</tr>
-
+			
 			<tr class="result">
 				<td><input type="button" class="button" value="Reset All" onclick="location.reload(true)"></td>
 				<td><input type="button" class="button" value="Default Credits" onclick="load_defaults()"></td>
-				<td><input type="button" class="button" value="Calculate SGPA" onclick="calculate()"></td>
-				<td>SGPA = </td>
+				<td><input type="button" class="button" value="Calculate CGPA" onclick="calculate()"></td>
+				<td>CGPA = </td>
 			</tr>
-
 		</table>
 
 		<br>
 		<p id="message" class="message"></p>
-
+		
 		<p class="info">
-			CGPA : Current Grade Point Average<br>
-			SGPA : Semester Grade Point Average<br>
+			Usage: Just fill SGPA & Credits and you are good to Go.<br>
 			<br>
-			Grade Points Secured (GPS) = CGPA × Credits<br>
-			SGPA = (GPS1 + GPS2 + .. + GPS8) / (C1 + C2 + .. + C8)<br>
+			SGPA : Semester Grade Point Average (out of 10)<br>
+			Grade Points Secured (GPS) = SGPA × Credits<br>
+			<br>
+			CGPA : Cumulative Grade Point Average (out of 10)<br>
+			CGPA = (GPS1 + GPS2 + .. + GPS8) / (C1 + C2 + .. + C8)<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = Total Grade Points Secured / Total credits<br>
 			<br>
-			Note : Default credits are of CSE Batch 2024. You can change accordingly.<br>
+			Note : Default credits are of CSE Batch 2024 - Punjabi University Patiala. You can change accordingly.<br>
 		</p>
 		
-		<br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br>
 		
 		<div class="wrapper">
 			<div class="about">
@@ -67,5 +64,4 @@ Date: 19/08/2023 -->
 			</div>
 		</div>
 	</body>
-
 </html>
