@@ -101,13 +101,22 @@ input:focus:not(.button) {
 	table, .message, .info, .about {
 		font-size: small;
 	}
+	
 	input, th, td, .about {
 		font-size: 10px;
+	}
+	
+	h2 {
+		font-size: 21px;
 	}
 }
 
 @media only screen and (min-width: 960px) {
 	table, .message, .info, .about, input, th, td, .about {
 		font-size: medium;
+	}
+	
+	h2 {
+		all: revert;
 	}
 }
