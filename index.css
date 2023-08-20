@@ -3,6 +3,7 @@ B.Tech CSE (12001179, 4CE6)
 Punjabi University Patiala
 Date: 19/08/2023 */
 
+/* Defining Global Theme colors */
 :root {
 	--bgcolor: #ebe7ff;
 	
@@ -28,7 +29,6 @@ table {
 	background-color: var(--table-bgcolor);
 	border: 4px double var(--border-color);
 	border-collapse: collapse;
-	margin-right: 10px;
 	font-family: 'Courier New';
 }
 
@@ -50,6 +50,10 @@ input {
 	border: none;
 	width: 97%;
 	text-align: center;
+}
+
+input:focus:not(.button) {
+	outline: 2px solid var(--button-border-color);
 }
 
 .button {
@@ -91,12 +95,19 @@ input {
 	right: 20px;
 }
 
+/* Using media queries for responsiveness */
+
 @media (max-aspect-ratio: 1) {
 	table, .message, .info, .about {
 		font-size: small;
 	}
-
 	input, th, td, .about {
 		font-size: 10px;
+	}
+}
+
+@media only screen and (min-width: 960px) {
+	table, .message, .info, .about, input, th, td, .about {
+		font-size: medium;
 	}
 }
